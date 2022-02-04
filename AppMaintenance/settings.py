@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'materializecssform',
     'django_truncate',
-    'members'
+    'members',
+    'website'
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
