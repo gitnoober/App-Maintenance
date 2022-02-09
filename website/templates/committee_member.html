@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{object.name}}
+{% endblock %}
+
+
+{% block content %}
+
+<h3>{{ object.name }} <small></h3>
+<h6> <small> - {{ object.added_on }}
+    {% if user.is_authenticated %}
+        {% if user.id == object.user.id %}
+            <a href="{% url 'member-edit' object.pk %}"> Edit</a>
+        </small>  </h6>
+        <ul class="list-group">
+            <li class="list-group-item ">{{ object.contact_number }}</li>
+            <li class="list-group-item "> {{ object.user }} </li>
+        </ul>
+        {% endif %}
+    {% endif %}
+</br></br>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+{% endblock %}

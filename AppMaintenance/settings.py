@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "materializecssform",
     "django_truncate",
-    "members",
+    "authentication",
     "website",
 ]
 
@@ -135,6 +135,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

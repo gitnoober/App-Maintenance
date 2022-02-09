@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% block title %}Member Form{% endblock %}
+
+
+{% if user.is_authenticated %}
+    <h2>Become A Member...</h2>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    <br/><br/>
+
+    <div clas="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary"> Submit</button>
+    </div>
+
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById("unique").value = name;
+
+    </script>
+
+{% else %}
+You're not allowed here!
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% block title %}Edit Member Details{% endblock %}
+
+{% if user.is_authenticated %}
+    {% if user.id == object.user.id %}
+
+        <h2>Update Member Details...</h2>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+        <br/><br/>
+
+        <div clas="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary"> Submit</button>
+        </div>
+    {% else %}
+        You're not allowed here!
+    {% endif %}
+
+{% else %}
+You're not allowed here!
+{% endif %}
+
+{% endblock %}
