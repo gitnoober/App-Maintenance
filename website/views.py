@@ -5,6 +5,22 @@ from .forms import CommitteMemberForm, UpdateCommitteMemberForm
 from .models import CommitteeMember
 
 
+def search_members(request):
+    if request.method == "POST":
+        searched = request.POST["searched"]
+        members = CommitteeMember.objects.filter(name__contains=searched)
+        # print(members)
+        for member in members:
+            print(member, "memmm")
+        return render(
+            request,
+            "search_member.html",
+            {"searched": searched, "members": members},
+        )
+    else:
+        return render(request, "search_member.html", {})
+
+
 # Create your views here.
 # def home(request):
 #     return render(request, "home.html", {})

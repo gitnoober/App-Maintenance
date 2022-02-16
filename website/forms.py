@@ -11,6 +11,7 @@ class CommitteMemberForm(ModelForm):
             "user",
             "contact_number",
             "emergency_contact_number",
+            "apartment_name",
             "flat_number",
             "blood_group",
             "family_members",
@@ -41,6 +42,12 @@ class CommitteMemberForm(ModelForm):
                     "placeholder": "Emergency Contact Number",
                 }
             ),
+            "apartment_name": TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Apartment Name",
+                }
+            ),
             "flat_number": TextInput(
                 attrs={"class": "form-control", "placeholder": "Flat Number"}
             ),
@@ -63,6 +70,7 @@ class UpdateCommitteMemberForm(ModelForm):
             "name",
             "contact_number",
             "emergency_contact_number",
+            "apartment_name",
             "flat_number",
             "blood_group",
             "family_members",
@@ -82,6 +90,12 @@ class UpdateCommitteMemberForm(ModelForm):
                 attrs={
                     "class": "form-control",
                     "placeholder": "Emergency Contact Number",
+                }
+            ),
+            "apartment_name": TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Apartment Name",
                 }
             ),
             "flat_number": TextInput(

@@ -12,7 +12,9 @@
             {% if user.id == member.user.id %}
                 <small> - <a href="{% url 'member-edit' member.pk %}">(Edit)</a></small>
                 <br/>
-                </a> Flat Number - {{ member.flat_number }} <br/>
+                </a>
+                    Apartment Name - {{ member.apartment_name }} <br/>
+                    Flat Number - {{ member.flat_number }} <br/>
                     Phone Number - {{ member.contact_number}} <small> </small>
             {% endif %}
         {% endif %}

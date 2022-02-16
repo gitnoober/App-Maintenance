@@ -7,6 +7,7 @@ from .views import (
     UpdateCommitteMemberView,
     about,
     contact,
+    search_members,
 )
 
 # app_name = "website"
@@ -27,4 +28,5 @@ urlpatterns = [
     ),
     path("about", about, name="about"),
     path("contact", contact, name="contact"),
+    path("search_member", search_members, name="search-members"),
 ]
