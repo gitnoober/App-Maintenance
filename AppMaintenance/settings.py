@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django_truncate",
     "authentication",
     "website",
+    "import_export",
 ]
 
 MIDDLEWARE = [
