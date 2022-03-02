@@ -13,7 +13,6 @@ from .views import (
 # app_name = "website"
 
 urlpatterns = [
-    # path("", views.home, name="home"),
     path("", HomeView.as_view(), name="home"),
     path(
         "member/<int:pk>",

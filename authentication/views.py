@@ -1,24 +1,76 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic import DetailView
 
-from website.models import CommitteeMember
+# from website.models import CommitteeMember
+from authentication.models import Profile
 
-from .forms import EditProfileForm, PasswordChangedForm, SignUpForm
+from .forms import (
+    EditProfileForm,
+    PasswordChangedForm,
+    SignUpForm,
+    UpdateProfileForm,
+    UpdateUserForm,
+)
+
+# @login_required
+# def profile(request):
+#     if request.method == 'POST':
+#         user_form = UpdateUserForm(request.POST, instance=request.user)
+#         profile_form = UpdateProfileForm(request.POST,instance=request.user.profile)
+#         print(user_form.is_valid(), profile_form.is_valid)
+
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user_form.save()
+#             profile_form.save()
+#             messages.success(request, 'Your profile is updated successfully')
+#             return redirect(to='home')
+#         else:
+#             user_form = UpdateUserForm(instance=request.user)
+#             profile_form = UpdateProfileForm(instance=request.user.profile)
+
+#     return render(request, 'registration/profile.html', {'user_form': user_form, 'profile_form': profile_form})
+@login_required
+def profile(request):
+    if request.method == "POST":
+        form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(
+            request.POST, instance=request.user.profile
+        )  # request.FILES is show the selected image or file
+
+        if form.is_valid() and profile_form.is_valid():
+            user_form = form.save()
+            custom_form = profile_form.save(False)
+            custom_form.user = user_form
+            custom_form.save()
+            return redirect("home")
+    else:
+        form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+        args = {}
+        # args.update(csrf(request))
+        args["form"] = form
+        args["profile_form"] = profile_form
+        # print(args)
+        return render(request, "registration/profile.html", args)
 
 
 class ShowProfilePageView(DetailView):
-    model = CommitteeMember
+    # model = CommitteeMember
+    model = Profile
     template_name = "registration/user_profile.html"
 
     def get_context_data(self, *args, **kwargs):
-        users = CommitteeMember.objects.all()
+        # users = CommitteeMember.objects.all()
+        users = Profile.objects.all()
         context = super(ShowProfilePageView, self).get_context_data(
             *args, **kwargs
         )
-        page_user = get_object_or_404(CommitteeMember, id=self.kwargs["pk"])
+        # page_user = get_object_or_404(CommitteeMember, id=self.kwargs["pk"])
+        page_user = get_object_or_404(Profile, id=self.kwargs["pk"])
         context["page_user"] = page_user
         return context
 

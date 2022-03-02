@@ -3,14 +3,14 @@ from django.urls import path
 from .views import (
     PasswordsChangeView,
     ShowProfilePageView,
-    UserEditView,
     UserRegisterView,
     password_success,
+    profile,
 )
 
 urlpatterns = [
     path("register/", UserRegisterView.as_view(), name="register"),
-    path("edit_profile/", UserEditView.as_view(), name="edit_profile"),
+    # path("edit_profile/", UserEditView.as_view(), name="edit_profile"),
     # path('password/',auth_views.PasswordChangeView.as_view(template_name='registration/change_password.html')),
     path("password/", PasswordsChangeView.as_view(), name="password_change"),
     path("password_success", password_success, name="password_success"),
@@ -19,4 +19,5 @@ urlpatterns = [
         ShowProfilePageView.as_view(),
         name="show_profile_page",
     ),
+    path("edit_profile/", profile, name="edit_profile"),
 ]

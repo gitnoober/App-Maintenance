@@ -1,18 +1,21 @@
 from django.forms import ModelForm, TextInput
 
-from .models import CommitteeMember
+# from .models import CommitteeMember
+from authentication.models import Profile
 
 
 class CommitteMemberForm(ModelForm):
     class Meta:
-        model = CommitteeMember
+        model = Profile
         fields = (
             "name",
             "user",
             "contact_number",
             "emergency_contact_number",
-            "apartment_name",
-            "flat_number",
+            "apartment",
+            "building",
+            "flat",
+            "status",
             "blood_group",
             "family_members",
         )
@@ -42,14 +45,23 @@ class CommitteMemberForm(ModelForm):
                     "placeholder": "Emergency Contact Number",
                 }
             ),
-            "apartment_name": TextInput(
+            "apartment": TextInput(
                 attrs={
                     "class": "form-control",
                     "placeholder": "Apartment Name",
                 }
             ),
-            "flat_number": TextInput(
+            "building": TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Building Name",
+                }
+            ),
+            "flat": TextInput(
                 attrs={"class": "form-control", "placeholder": "Flat Number"}
+            ),
+            "status": TextInput(
+                attrs={"class": "form-control", "placeholder": "Owner/Tenant"}
             ),
             "blood_group": TextInput(
                 attrs={"class": "form-control", "placeholder": "Blood Group"}
@@ -65,13 +77,13 @@ class CommitteMemberForm(ModelForm):
 
 class UpdateCommitteMemberForm(ModelForm):
     class Meta:
-        model = CommitteeMember
+        model = Profile
         fields = (
             "name",
             "contact_number",
             "emergency_contact_number",
-            "apartment_name",
-            "flat_number",
+            # "apartment_name",
+            # "flat_number",
             "blood_group",
             "family_members",
         )
@@ -92,15 +104,15 @@ class UpdateCommitteMemberForm(ModelForm):
                     "placeholder": "Emergency Contact Number",
                 }
             ),
-            "apartment_name": TextInput(
-                attrs={
-                    "class": "form-control",
-                    "placeholder": "Apartment Name",
-                }
-            ),
-            "flat_number": TextInput(
-                attrs={"class": "form-control", "placeholder": "Flat Number"}
-            ),
+            # "apartment_name": TextInput(
+            #     attrs={
+            #         "class": "form-control",
+            #         "placeholder": "Apartment Name",
+            #     }
+            # ),
+            # "flat_number": TextInput(
+            #     attrs={"class": "form-control", "placeholder": "Flat Number"}
+            # ),
             "blood_group": TextInput(
                 attrs={"class": "form-control", "placeholder": "Blood Group"}
             ),

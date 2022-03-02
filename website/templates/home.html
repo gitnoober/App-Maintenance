@@ -1,26 +1,95 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-<h1>Home Page</h1>
+{% comment %} <p class="flow-text">Home Page After login</p> {% endcomment %}
+    <blockquote>
+      Home Page
+    </blockquote>
 
 <ul>
-{% for member in object_list %}
-    <li><a href="{% url 'member-detail' member.pk %}">
-        {{ member.name }}
-        {% if user.is_authenticated %}
-            {% if user.id == member.user.id %}
-                <small> - <a href="{% url 'member-edit' member.pk %}">(Edit)</a></small>
-                <br/>
-                </a>
-                    Apartment Name - {{ member.apartment_name }} <br/>
-                    Flat Number - {{ member.flat_number }} <br/>
-                    Phone Number - {{ member.contact_number}} <small> </small>
-            {% endif %}
-        {% endif %}
-    </li>
-{% endfor %}
-</ul>
 
+{% if user.is_authenticated %}
+
+{% if user.profile.role_id == 1 %}
+    <h3>
+      Members List
+    </h3>
+    {% for member in object_list %}
+        <li><a href="{% url 'member-detail' member.pk %}">
+            {% if member.name %}
+                Member Name - {{ member.name }}
+                <br>
+            {% endif %}
+            {% if member.flat != None  %}
+                Flat Number - {{ member.flat }}
+                <br>
+            {% endif %}
+
+            {% if member.status %}
+                Member Status - {{ member.status }}
+            {% endif %}
+
+            {% if member.contact_number %}
+                Contact Number - {{ member.contact_number }}
+            {% endif %}
+
+            {% if member.family_members %}
+                Family Members - {{ member.family_members }}
+            {% endif %}
+
+
+            <script >
+                var a = "{{user.profile.apartment_id}}"
+                console.log(a)
+            </script>
+
+        </li>
+    {% endfor %}
+{% endif %}
+
+{% else %}
+{% comment %} <img class="responsive-img" src="cool_pic.jpg"> {% endcomment %}
+<div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Easy Usage</h5>
+
+            <p class="light">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">User Experience Focused</h5>
+
+            <p class="light">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center">Easy to work with</h5>
+
+            <p class="light"> dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+  </div>
+
+
+{% endif %}
+</ul>
 
 {% endblock %}
