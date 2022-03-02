@@ -2,11 +2,14 @@
 
 {% block content %}
 
-{% block title %}Member Form{% endblock %}
+{% comment %} {% block title %}Member Form{% endblock %} {% endcomment %}
+<blockquote>
+    Complete Your Profile ...
+</blockquote>
 
 
 {% if user.is_authenticated %}
-    <h2>Become A Member...</h2>
+
     <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
     <br/><br/>
 

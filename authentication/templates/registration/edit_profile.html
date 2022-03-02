@@ -2,18 +2,21 @@
 {% block title %} Edit Profile {% endblock  %}
 {% block content %}
 
-<h1>Edit Profile ...</h1>
-<br/><br/>
+<div class="container">
+        <blockquote>
+      Edit Profile
+    </blockquote>
 
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-secondary">Update Profile </button>
-    </form>
-    <br>
-    <a href="{% url 'password_change' %}" class="btn btn-secondary" >Change Password </a>
-    <br>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Update Profile </button>
+        </form>
+        <br>
+        <a href="{% url 'password_change' %}" class="btn btn-secondary" >Change Password </a>
+        <br>
+    </div>
 </div>
 
 {% endblock content %}
