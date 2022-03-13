@@ -18,3 +18,4 @@ sqlparse==0.4.2
 toml==0.10.2
 virtualenv==20.13.0
 django-import-export==2.7.1
+indian-cities==1.0.0
