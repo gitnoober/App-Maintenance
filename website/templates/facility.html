@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <blockquote>
+      Check our Facilities
+    </blockquote>
+    {% if user.is_authenticated %}
+        <div class="mui-container">
+            {% for facility in object_list %}
+              <li style="font-size: 2em; margin-left: 30px" ><a href="{% url 'facility-detail' facility.pk %}">
+                {% if facility.title %}
+                  {{ facility.title }}
+                  <br/>
+                {% endif %}
+              </li>
+
+            {% endfor %}
+          </div>
+          
+    {% endif %}
+{% endblock %}

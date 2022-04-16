@@ -3,7 +3,6 @@
 
 {% block content %}
 
-{% comment %} <p class="flow-text">Home Page After login</p> {% endcomment %}
     <blockquote>
       Home Page
     </blockquote>
@@ -11,12 +10,9 @@
 <ul>
 
 {% if user.is_authenticated %}
-
-{% if user.profile.role_id == 1 %}
-    <h3>
-      Members List
-    </h3>
-    {% for member in object_list %}
+    {% if user.profile.role_id == 1 %}
+      <h3> Members List </h3>
+      {% for member in object_list %}
         <li><a href="{% url 'member-detail' member.pk %}">
             {% if member.name %}
                 Member Name - {{ member.name }}
@@ -46,8 +42,11 @@
             </script>
 
         </li>
-    {% endfor %}
-{% endif %}
+      {% endfor %}
+    {% else %}
+        <div class="mui--text-display3">Oops... Nothing here </div>
+    {% endif %}
+
 
 {% else %}
 {% comment %} <img class="responsive-img" src="cool_pic.jpg"> {% endcomment %}
@@ -91,5 +90,6 @@
 
 {% endif %}
 </ul>
+<br/><br/><br/><br/><br/>
 
 {% endblock %}

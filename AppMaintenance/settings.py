@@ -17,6 +17,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+# Fixture for pre-populating data
+FIXTURE_DIRS = [BASE_DIR / "fixtures"]
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -25,11 +29,15 @@ SECRET_KEY = (
     "django-insecure--azwz7phyit3-(=_@gnqw0-j@t*e@m6h6tzv#3a6ua#rhwiupy"
 )
 
+STRIPE_PUBLIC_KEY = "pk_test_1234"
+STRIPE_SECRET_KEY = "sk_test_1234"
+STRIPE_WEBHOOK_SECRET = "whsec_1234"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -82,22 +90,22 @@ WSGI_APPLICATION = "AppMaintenance.wsgi.application"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # for sqlite3
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# for mysql
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "db_appmain",
-        "USER": "root",
-        "PASSWORD": "new_password",
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# for mysql
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": "db_appmain",
+#         "USER": "root",
+#         "PASSWORD": "new_password",
+#     }
+# }
 
 
 # Password validation

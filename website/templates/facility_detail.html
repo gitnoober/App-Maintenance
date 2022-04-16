@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{object.name}}
+{% endblock %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h3>{{ object.title }} <small></h3>
+
+{% if object.booked %}
+    <h5>  Oops.. Looks like this is booked, come back when it frees up! </h5>
+
+{% else %}
+<h5> <small> {{ object.details }} </h4>
+<h6> <small> Booking Price - &#8377; {{ object.price }} </h4>
+
+{% endif %}
+{% endif %}
+</br></br></br></br></br></br></br></br>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+{% endblock %}

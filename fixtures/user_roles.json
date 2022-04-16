@@ -1,0 +1,18 @@
+[
+  {
+    "model": "website.role",
+    "pk": 1,
+    "fields": {
+      "role": "admin",
+      "description": "can create users, facilities etc..."
+    }
+  },
+  {
+    "model": "website.role",
+    "pk": 2,
+    "fields": {
+      "role": "normal_user",
+      "description": "can consume facilities"
+    }
+  }
+]

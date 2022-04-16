@@ -2,6 +2,7 @@ from django.forms import ModelForm, TextInput
 
 # from .models import CommitteeMember
 from authentication.models import Profile
+from website.models import Apartment, Facility
 
 
 class CommitteMemberForm(ModelForm):
@@ -82,8 +83,6 @@ class UpdateCommitteMemberForm(ModelForm):
             "name",
             "contact_number",
             "emergency_contact_number",
-            # "apartment_name",
-            # "flat_number",
             "blood_group",
             "family_members",
         )
@@ -104,15 +103,6 @@ class UpdateCommitteMemberForm(ModelForm):
                     "placeholder": "Emergency Contact Number",
                 }
             ),
-            # "apartment_name": TextInput(
-            #     attrs={
-            #         "class": "form-control",
-            #         "placeholder": "Apartment Name",
-            #     }
-            # ),
-            # "flat_number": TextInput(
-            #     attrs={"class": "form-control", "placeholder": "Flat Number"}
-            # ),
             "blood_group": TextInput(
                 attrs={"class": "form-control", "placeholder": "Blood Group"}
             ),
@@ -120,6 +110,50 @@ class UpdateCommitteMemberForm(ModelForm):
                 attrs={
                     "class": "form-control",
                     "placeholder": "Number of Family Members",
+                }
+            ),
+        }
+
+
+class FacilityForm(ModelForm):
+
+
+    class Meta:
+        model = Facility
+        fields = (
+            "title",
+            "details",
+            "price",
+            "meta",
+            "booked",
+        )
+
+        widgets = {
+            "title": TextInput(
+                attrs={"class": "form-control", "placeholder": "title"}
+            ),
+            "details": TextInput(
+                attrs = {
+                    "class": "form-control",
+                    "placeholder": "details"
+                }
+            ),
+            "price": TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "price",
+                }
+            ),
+            "meta": TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "meta"
+                }
+            ),
+            "booked": TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "booked"
                 }
             ),
         }
