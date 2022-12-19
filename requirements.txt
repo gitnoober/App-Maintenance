@@ -6,7 +6,7 @@ django-materializecss-form==1.1.17
 django-truncate==0.1
 djangorestframework==3.13.1
 filelock==3.4.2
-identify==2.4.8
+identify==2.5.10
 mysqlclient==2.1.0
 nodeenv==1.6.0
 platformdirs==2.4.1
